@@ -30,54 +30,52 @@
 package org.abego.treelayout.util;
 
 import static org.abego.treelayout.internal.util.Contract.checkArg;
-
 import org.abego.treelayout.NodeExtentProvider;
 
 /**
  * A {@link NodeExtentProvider} returning the same width and height for each
  * node.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
+ *
  * @param <T> Type of elements used as nodes in the tree
  */
 public class FixedNodeExtentProvider<T> implements NodeExtentProvider<T> {
 
-	private final double width;
-	private final double height;
+    private final double width;
 
-	/**
-	 * Specifies the constants to be used as the width and height of the nodes.
-	 * 
-	 * @param width
-	 *            [default=0]
-	 * 
-	 * @param height
-	 *            [default=0]
-	 */
-	public FixedNodeExtentProvider(double width, double height) {
-		checkArg(width >= 0, "width must be >= 0");
-		checkArg(height >= 0, "height must be >= 0");
+    private final double height;
 
-		this.width = width;
-		this.height = height;
-	}
+    /**
+     * Specifies the constants to be used as the width and height of the nodes.
+     *
+     * @param width
+     *            [default=0]
+     *
+     * @param height
+     *            [default=0]
+     */
+    public FixedNodeExtentProvider(double width, double height) {
+        checkArg(width >= 0, "width must be >= 0");
+        checkArg(height >= 0, "height must be >= 0");
+        this.width = width;
+        this.height = height;
+    }
 
-	/**
-	 * see {@link #FixedNodeExtentProvider(double, double)}
-	 */
-	public FixedNodeExtentProvider() {
-		this(0, 0);
-	}
+    /**
+     * see {@link #FixedNodeExtentProvider(double, double)}
+     */
+    public FixedNodeExtentProvider() {
+        this(0, 0);
+    }
 
-	@Override
-	public double getWidth(T treeNode) {
-		return width;
-	}
+    @Override
+    public double getWidth(T treeNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public double getHeight(T treeNode) {
-		return height;
-	}
-
+    @Override
+    public double getHeight(T treeNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

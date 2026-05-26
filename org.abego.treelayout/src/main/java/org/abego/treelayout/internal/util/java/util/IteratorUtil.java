@@ -35,47 +35,46 @@ import java.util.ListIterator;
 
 /**
  * Util (general purpose) methods dealing with {@link Iterator}.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
- * 
  */
 public class IteratorUtil {
 
-	private static class ReverseIterator<T> implements Iterator<T> {
-		private ListIterator<T> listIterator;
+    private static class ReverseIterator<T> implements Iterator<T> {
 
-		public ReverseIterator(List<T> list) {
-			this.listIterator = list.listIterator(list.size());
-		}
+        private ListIterator<T> listIterator;
 
-		@Override
-		public boolean hasNext() {
-			return listIterator.hasPrevious();
-		}
+        public ReverseIterator(List<T> list) {
+            this.listIterator = list.listIterator(list.size());
+        }
 
-		@Override
-		public T next() {
-			return listIterator.previous();
-		}
+        @Override
+        public boolean hasNext() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
 
-		@Override
-		public void remove() {
-			listIterator.remove();
-		}
-	}
+        @Override
+        public T next() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
 
-	/**
-	 * Returns an {@link Iterator} iterating the given list from the end to the
-	 * start.
-	 * <p>
-	 * I.e. the iterator does the reverse of the {@link List#iterator()}.
-	 * 
-	 * @param <T> Type of elements in the list
-	 * @param list &nbsp;
-	 * @return a reverse {@link Iterator} of the list
-	 */
-	public static <T> Iterator<T> createReverseIterator(List<T> list) {
-		return new ReverseIterator<T>(list);
-	}
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
+    }
+
+    /**
+     * Returns an {@link Iterator} iterating the given list from the end to the
+     * start.
+     * <p>
+     * I.e. the iterator does the reverse of the {@link List#iterator()}.
+     *
+     * @param <T> Type of elements in the list
+     * @param list &nbsp;
+     * @return a reverse {@link Iterator} of the list
+     */
+    public static <T> Iterator<T> createReverseIterator(List<T> list) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -31,47 +31,40 @@ package org.abego.treelayout.internal.util.java.lang;
 
 import java.util.Iterator;
 import java.util.List;
-
 import org.abego.treelayout.internal.util.java.util.IteratorUtil;
 
 /**
  * Util (general purpose) methods dealing with {@link Iterable}.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
- * 
  */
 public class IterableUtil {
-	private static class ReverseIterable<T> implements Iterable<T> {
-		private List<T> list;
 
-		public ReverseIterable(List<T> list) {
-			this.list = list;
-		}
+    private static class ReverseIterable<T> implements Iterable<T> {
 
-		@Override
-		public Iterator<T> iterator() {
-			return IteratorUtil.createReverseIterator(list);
-		}
-	};
+        private List<T> list;
 
-	/**
-	 * Returns an {@link Iterable} with an iterator iterating the given list
-	 * from the end to the start.
-	 * <p>
-	 * I.e. the iterator does the reverse of the {@link List#iterator()}.
-	 * 
-	 * @param <T> Type of elements in the list
-	 * @param list  &nbsp;
-	 * @return a reverse {@link Iterable} of the list
-	 */
-	public static <T> Iterable<T> createReverseIterable(List<T> list) {
-		// When the list is empty we can use the "forward" iterable (i.e. the
-		// list itself) also as the reverseIterable as it will do nothing.
-		if (list.size() == 0) {
-			return list;
-		}
+        public ReverseIterable(List<T> list) {
+            this.list = list;
+        }
 
-		return new ReverseIterable<T>(list);
-	}
+        @Override
+        public Iterator<T> iterator() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
+    }
+
+    /**
+     * Returns an {@link Iterable} with an iterator iterating the given list
+     * from the end to the start.
+     * <p>
+     * I.e. the iterator does the reverse of the {@link List#iterator()}.
+     *
+     * @param <T> Type of elements in the list
+     * @param list  &nbsp;
+     * @return a reverse {@link Iterable} of the list
+     */
+    public static <T> Iterable<T> createReverseIterable(List<T> list) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

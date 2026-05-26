@@ -37,7 +37,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.abego.treelayout.Configuration;
 import org.abego.treelayout.Configuration.AlignmentInLevel;
 import org.abego.treelayout.Configuration.Location;
@@ -72,7 +71,7 @@ import org.netbeans.api.visual.widget.Widget;
  * GraphScene <tt>scene</tt> and the root node is stored in <tt>root</tt>. Then
  * you may use code similar to the following to layout the tree and display it
  * in a dialog:
- * 
+ *
  * <pre>
  * // layout the tree
  * AbegoTreeLayoutForNetbeans graphLayout = new AbegoTreeLayoutForNetbeans(root,
@@ -80,7 +79,7 @@ import org.netbeans.api.visual.widget.Widget;
  * SceneLayout sceneLayout = LayoutFactory.createSceneGraphLayout(scene,
  * 		graphLayout);
  * sceneLayout.invokeLayoutImmediately();
- * 
+ *
  * // display the tree in a dialog
  * JScrollPane panel = new JScrollPane(scene.createView());
  * JDialog dialog = new JDialog();
@@ -91,7 +90,7 @@ import org.netbeans.api.visual.widget.Widget;
  * dialog.setVisible(true);
  * dialog.dispose();
  * </pre>
- * 
+ *
  * <h2>Documentation</h2>
  * For details, especially on the Configuration parameter, see the abego
  * TreeLayout documentation.
@@ -99,7 +98,7 @@ import org.netbeans.api.visual.widget.Widget;
  * AbegoTreeLayoutForNetbeans.
  * <p>
  * @author Udo Borkowski (ub@abego.org)
- * 
+ *
  * @param <N>
  *            the node type
  * @param <E>
@@ -107,143 +106,115 @@ import org.netbeans.api.visual.widget.Widget;
  */
 public class AbegoTreeLayoutForNetbeans<N, E> extends GraphLayout<N, E> {
 
-	private TreeLayout<N> treeLayout;
-	private Configuration<N> configuration;
-	private int originX;
-	private int originY;
-	private N rootNode;
+    private TreeLayout<N> treeLayout;
 
-	private class MyNodeExtentProvider implements NodeExtentProvider<N> {
+    private Configuration<N> configuration;
 
-		private UniversalGraph<N, E> graph;
+    private int originX;
 
-		private Rectangle getBounds(N node) {
-			Widget widget = graph.getScene().findWidget(node);
-			widget.getLayout().layout(widget);
-			return widget.getPreferredBounds();
-		}
+    private int originY;
 
-		public MyNodeExtentProvider(UniversalGraph<N, E> graph) {
-			this.graph = graph;
-		}
+    private N rootNode;
 
-		public double getHeight(N treeNode) {
-			return getBounds(treeNode).getHeight();
-		}
+    private class MyNodeExtentProvider implements NodeExtentProvider<N> {
 
-		public double getWidth(N treeNode) {
-			return getBounds(treeNode).getWidth();
-		}
-	};
+        private UniversalGraph<N, E> graph;
 
-	private class MyTreeForTreeLayout extends AbstractTreeForTreeLayout<N> {
-		private Map<N, List<N>> childrenNodes = new HashMap<N, List<N>>();
-		private Map<N, N> parents = new HashMap<N, N>();
+        private Rectangle getBounds(N node) {
+            Widget widget = graph.getScene().findWidget(node);
+            widget.getLayout().layout(widget);
+            return widget.getPreferredBounds();
+        }
 
-		private UniversalGraph<N, E> graph;
+        public MyNodeExtentProvider(UniversalGraph<N, E> graph) {
+            this.graph = graph;
+        }
 
-		private N calcParent(N node) {
-			Collection<E> edges = graph.findNodeEdges(node, false, true);
-			int n = edges.size();
-			if (n > 1) {
-				throw new RuntimeException("node has more than one parent");
-			}
-			N parent = n == 0 ? null : graph.getEdgeSource(edges.iterator()
-					.next());
-			return parent;
-		}
+        public double getHeight(N treeNode) {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
 
-		private List<N> calcChildrenList(N parentNode) {
-			List<N> children;
-			Collection<E> edges = graph.findNodeEdges(parentNode, true, false);
-			children = new ArrayList<N>(edges.size());
-			for (E edge : edges) {
-				children.add(graph.getEdgeTarget(edge));
-			}
-			return children;
-		}
+        public double getWidth(N treeNode) {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
+    }
 
-		public N getParent(N node) {
-			if (parents.containsKey(node)) {
-				return parents.get(node);
-			}
+    private class MyTreeForTreeLayout extends AbstractTreeForTreeLayout<N> {
 
-			N parent = calcParent(node);
+        private Map<N, List<N>> childrenNodes = new HashMap<N, List<N>>();
 
-			parents.put(node, parent);
-			return parent;
-		}
+        private Map<N, N> parents = new HashMap<N, N>();
 
-		public List<N> getChildrenList(N parentNode) {
-			List<N> children = childrenNodes.get(parentNode);
+        private UniversalGraph<N, E> graph;
 
-			if (children == null) {
-				children = calcChildrenList(parentNode);
-				childrenNodes.put(parentNode, children);
-			}
-			return children;
-		}
+        private N calcParent(N node) {
+            Collection<E> edges = graph.findNodeEdges(node, false, true);
+            int n = edges.size();
+            if (n > 1) {
+                throw new RuntimeException("node has more than one parent");
+            }
+            N parent = n == 0 ? null : graph.getEdgeSource(edges.iterator().next());
+            return parent;
+        }
 
-		public MyTreeForTreeLayout(N root, UniversalGraph<N, E> graph) {
-			super(root);
-			this.graph = graph;
-		}
-	}
+        private List<N> calcChildrenList(N parentNode) {
+            List<N> children;
+            Collection<E> edges = graph.findNodeEdges(parentNode, true, false);
+            children = new ArrayList<N>(edges.size());
+            for (E edge : edges) {
+                children.add(graph.getEdgeTarget(edge));
+            }
+            return children;
+        }
 
-	@Override
-	protected void performGraphLayout(UniversalGraph<N, E> graph) {
-		if (!graph.getNodes().contains(rootNode)) {
-			throw new IllegalArgumentException(
-					"graph does not contain rootNode");
-		}
+        public N getParent(N node) {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
 
-		TreeLayout<N> layout = new TreeLayout<N>(new MyTreeForTreeLayout(
-				rootNode, graph), new MyNodeExtentProvider(graph),
-				configuration);
-		Map<N, Rectangle2D.Double> bounds = layout.getNodeBounds();
-		for (Map.Entry<N, Rectangle2D.Double> entry : bounds.entrySet()) {
-			Rectangle2D.Double rect = entry.getValue();
-			Point pt = new Point((int) Math.round(rect.getX() + originX),
-					(int) Math.round(rect.getY() + originY));
-			setResolvedNodeLocation(graph, entry.getKey(), pt);
-		}
-	}
+        public List<N> getChildrenList(N parentNode) {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
 
-	@Override
-	protected void performNodesLayout(UniversalGraph<N, E> universalGraph,
-			Collection<N> nodes) {
-		throw new UnsupportedOperationException(
-				"Cannot layout a subsets of nodes of a tree");
-	}
+        public MyTreeForTreeLayout(N root, UniversalGraph<N, E> graph) {
+            super(root);
+            this.graph = graph;
+        }
+    }
 
-	public AbegoTreeLayoutForNetbeans(N rootNode, int originX, int originY,
-			Configuration<N> configuration) {
-		this.rootNode = rootNode;
-		this.originX = originX;
-		this.originY = originY;
-		this.configuration = configuration;
-	}
+    @Override
+    protected void performGraphLayout(UniversalGraph<N, E> graph) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	public AbegoTreeLayoutForNetbeans(N rootNode, int originX, int originY,
-			int gapBetweenLevels, int gapBetweenNodes, boolean vertical) {
-		this(rootNode, originX, originY, new DefaultConfiguration<N>(
-				gapBetweenLevels, gapBetweenNodes, vertical ? Location.Top
-						: Location.Left, AlignmentInLevel.TowardsRoot));
-	}
+    @Override
+    protected void performNodesLayout(UniversalGraph<N, E> universalGraph, Collection<N> nodes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	public N getRootNode() {
-		return rootNode;
-	}
+    public AbegoTreeLayoutForNetbeans(N rootNode, int originX, int originY, Configuration<N> configuration) {
+        this.rootNode = rootNode;
+        this.originX = originX;
+        this.originY = originY;
+        this.configuration = configuration;
+    }
 
-	public Configuration<N> getConfiguration() {
-		return this.configuration;
-	}
+    public AbegoTreeLayoutForNetbeans(N rootNode, int originX, int originY, int gapBetweenLevels, int gapBetweenNodes, boolean vertical) {
+        this(rootNode, originX, originY, new DefaultConfiguration<N>(gapBetweenLevels, gapBetweenNodes, vertical ? Location.Top : Location.Left, AlignmentInLevel.TowardsRoot));
+    }
 
-	public int getOriginX() {
-		return originX;
-	}
+    public N getRootNode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	public int getOriginY() {
-		return originY;
-	}
+    public Configuration<N> getConfiguration() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public int getOriginX() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public int getOriginY() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

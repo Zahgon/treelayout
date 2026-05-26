@@ -30,7 +30,6 @@
 package org.abego.treelayout.util;
 
 import java.util.List;
-
 import org.abego.treelayout.TreeForTreeLayout;
 import org.abego.treelayout.internal.util.java.lang.IterableUtil;
 import org.abego.treelayout.internal.util.java.util.ListUtil;
@@ -43,80 +42,79 @@ import org.abego.treelayout.internal.util.java.util.ListUtil;
  * (see {@link #getChildrenList(Object)} and give direct access to the parent of
  * a node (see {@link #getParent(Object)}).
  * <p>
- * 
+ *
  * See also {@link DefaultTreeForTreeLayout}.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
+ *
  * @param <TreeNode> Type of elements used as nodes in the tree
  */
-abstract public class AbstractTreeForTreeLayout<TreeNode> implements
-		TreeForTreeLayout<TreeNode> {
+abstract public class AbstractTreeForTreeLayout<TreeNode> implements TreeForTreeLayout<TreeNode> {
 
-	/**
-	 * Returns the parent of a node, if it has one.
-	 * <p>
-	 * Time Complexity: O(1)
-	 * 
-	 * @param node &nbsp;
-	 * @return [nullable] the parent of the node, or null when the node is a
-	 *         root.
-	 */
-	abstract public TreeNode getParent(TreeNode node);
+    /**
+     * Returns the parent of a node, if it has one.
+     * <p>
+     * Time Complexity: O(1)
+     *
+     * @param node &nbsp;
+     * @return [nullable] the parent of the node, or null when the node is a
+     *         root.
+     */
+    abstract public TreeNode getParent(TreeNode node);
 
-	/**
-	 * Return the children of a node as a {@link List}.
-	 * <p>
-	 * Time Complexity: O(1)
-	 * <p>
-	 * Also the access to an item of the list must have time complexity O(1).
-	 * <p>
-	 * A client must not modify the returned list.
-	 * 
-	 * @param node &nbsp;
-	 * @return the children of the given node. When node is a leaf the list is
-	 *         empty.
-	 */
-	abstract public List<TreeNode> getChildrenList(TreeNode node);
+    /**
+     * Return the children of a node as a {@link List}.
+     * <p>
+     * Time Complexity: O(1)
+     * <p>
+     * Also the access to an item of the list must have time complexity O(1).
+     * <p>
+     * A client must not modify the returned list.
+     *
+     * @param node &nbsp;
+     * @return the children of the given node. When node is a leaf the list is
+     *         empty.
+     */
+    abstract public List<TreeNode> getChildrenList(TreeNode node);
 
-	private final TreeNode root;
+    private final TreeNode root;
 
-	public AbstractTreeForTreeLayout(TreeNode root) {
-		this.root = root;
-	}
+    public AbstractTreeForTreeLayout(TreeNode root) {
+        this.root = root;
+    }
 
-	@Override
-	public TreeNode getRoot() {
-		return root;
-	}
+    @Override
+    public TreeNode getRoot() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public boolean isLeaf(TreeNode node) {
-		return getChildrenList(node).isEmpty();
-	}
+    @Override
+    public boolean isLeaf(TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public boolean isChildOfParent(TreeNode node, TreeNode parentNode) {
-		return getParent(node) == parentNode;
-	}
+    @Override
+    public boolean isChildOfParent(TreeNode node, TreeNode parentNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public Iterable<TreeNode> getChildren(TreeNode node) {
-		return getChildrenList(node);
-	}
+    @Override
+    public Iterable<TreeNode> getChildren(TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public Iterable<TreeNode> getChildrenReverse(TreeNode node) {
-		return IterableUtil.createReverseIterable(getChildrenList(node));
-	}
+    @Override
+    public Iterable<TreeNode> getChildrenReverse(TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public TreeNode getFirstChild(TreeNode parentNode) {
-		return getChildrenList(parentNode).get(0);
-	}
+    @Override
+    public TreeNode getFirstChild(TreeNode parentNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public TreeNode getLastChild(TreeNode parentNode) {
-		return ListUtil.getLast(getChildrenList(parentNode));
-	}
+    @Override
+    public TreeNode getLastChild(TreeNode parentNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

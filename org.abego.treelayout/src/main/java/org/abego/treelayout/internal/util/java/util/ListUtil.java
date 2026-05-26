@@ -33,21 +33,17 @@ import java.util.List;
 
 /**
  * Util (general purpose) methods dealing with {@link List}.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
- * 
  */
 public class ListUtil {
 
-	/**
-	 * 
-	 * @param <T> Type of elements in the list
-	 * @param list [!list.isEmpty()]
-	 * @return the last element of the list
-	 */
-	public static <T> T getLast(List<T> list) {
-		return list.get(list.size() - 1);
-	}
-
+    /**
+     * @param <T> Type of elements in the list
+     * @param list [!list.isEmpty()]
+     * @return the last element of the list
+     */
+    public static <T> T getLast(List<T> list) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

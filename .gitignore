@@ -4,3 +4,7 @@ org.abego.treelayout/nbproject/private
 *.iml
 org.abego.treelayout/.idea
 .idea
+.aider*
+logs/
+.commit0_scripts/
+.github/workflows/

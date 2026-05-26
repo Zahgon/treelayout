@@ -30,79 +30,29 @@
 package org.abego.treelayout.internal.util.java.lang.string;
 
 public class StringUtil {
-	/**
-	 * Returns a quoted version of a given string, i.e. as a Java String
-	 * Literal.
-	 * 
-	 * @param s
-	 *            [nullable] the string to quote
-	 * @param nullResult
-	 *            [default="null"] the String to be returned for null values.
-	 * @return the nullResult when s is null, otherwise s as a quoted string
-	 *         (i.e. Java String Literal)
-	 * 
-	 */
-	public static String quote(String s, String nullResult) {
-		if (s == null) {
-			return nullResult;
-		}
-		StringBuffer result = new StringBuffer();
-		result.append('"');
-		int length = s.length();
-		for (int i = 0; i < length; i++) {
-			char c = s.charAt(i);
-			switch (c) {
-			case '\b': {
-				result.append("\\b");
-				break;
-			}
-			case '\f': {
-				result.append("\\f");
-				break;
-			}
-			case '\n': {
-				result.append("\\n");
-				break;
-			}
-			case '\r': {
-				result.append("\\r");
-				break;
-			}
-			case '\t': {
-				result.append("\\t");
-				break;
-			}
-			case '\\': {
-				result.append("\\\\");
-				break;
-			}
-			case '"': {
-				result.append("\\\"");
-				break;
-			}
-			default: {
-				if (c < ' ' || c >= '\u0080') {
-					String n = Integer.toHexString(c);
-					result.append("\\u");
-					result.append("0000".substring(n.length()));
-					result.append(n);
-				} else {
-					result.append(c);
-				}
-			}
-			}
-		}
-		result.append('"');
-		return result.toString();
-	}
 
-	/**
-	 * see {@link #quote(String, String)}
-	 * 
-	 * @param s the string to quote
-	 * @return nullable
-	 */
-	public static String quote(String s) {
-		return quote(s, "null");
-	}
+    /**
+     * Returns a quoted version of a given string, i.e. as a Java String
+     * Literal.
+     *
+     * @param s
+     *            [nullable] the string to quote
+     * @param nullResult
+     *            [default="null"] the String to be returned for null values.
+     * @return the nullResult when s is null, otherwise s as a quoted string
+     *         (i.e. Java String Literal)
+     */
+    public static String quote(String s, String nullResult) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    /**
+     * see {@link #quote(String, String)}
+     *
+     * @param s the string to quote
+     * @return nullable
+     */
+    public static String quote(String s) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

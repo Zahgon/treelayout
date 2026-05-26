@@ -30,12 +30,10 @@
 package org.abego.treelayout.util;
 
 import static org.abego.treelayout.internal.util.Contract.checkArg;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  * Provides a generic implementation for the {@link org.abego.treelayout.TreeForTreeLayout}
@@ -49,79 +47,65 @@ import java.util.Map;
  * construct the tree by adding children to the root or other nodes of the tree
  * (see {@link #addChild(Object, Object)} and
  * {@link #addChildren(Object, Object...)}).
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
+ *
  * @param <TreeNode> Type of elements used as nodes in the tree
  */
-public class DefaultTreeForTreeLayout<TreeNode> extends
-		AbstractTreeForTreeLayout<TreeNode> {
+public class DefaultTreeForTreeLayout<TreeNode> extends AbstractTreeForTreeLayout<TreeNode> {
 
-	private List<TreeNode> emptyList;
+    private List<TreeNode> emptyList;
 
-	private List<TreeNode> getEmptyList() {
-		if (emptyList == null) {
-			emptyList = new ArrayList<TreeNode>();
-		}
-		return emptyList;
-	}
+    private List<TreeNode> getEmptyList() {
+        if (emptyList == null) {
+            emptyList = new ArrayList<TreeNode>();
+        }
+        return emptyList;
+    }
 
-	private Map<TreeNode, List<TreeNode>> childrenMap = new HashMap<TreeNode, List<TreeNode>>();
-	private Map<TreeNode, TreeNode> parents = new HashMap<TreeNode, TreeNode>();
+    private Map<TreeNode, List<TreeNode>> childrenMap = new HashMap<TreeNode, List<TreeNode>>();
 
-	/**
-	 * Creates a new instance with a given node as the root
-	 * 
-	 * @param root
-	 *            the node to be used as the root.
-	 */
-	public DefaultTreeForTreeLayout(TreeNode root) {
-		super(root);
-	}
+    private Map<TreeNode, TreeNode> parents = new HashMap<TreeNode, TreeNode>();
 
-	@Override
-	public TreeNode getParent(TreeNode node) {
-		return parents.get(node);
-	}
+    /**
+     * Creates a new instance with a given node as the root
+     *
+     * @param root
+     *            the node to be used as the root.
+     */
+    public DefaultTreeForTreeLayout(TreeNode root) {
+        super(root);
+    }
 
-	@Override
-	public List<TreeNode> getChildrenList(TreeNode node) {
-		List<TreeNode> result = childrenMap.get(node);
-		return result == null ? getEmptyList() : result;
-	}
+    @Override
+    public TreeNode getParent(TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	/**
-	 * 
-	 * @param node &nbsp;
-	 * @return true iff the node is in the tree
-	 */
-	public boolean hasNode(TreeNode node) {
-		return node == getRoot() || parents.containsKey(node);
-	}
+    @Override
+    public List<TreeNode> getChildrenList(TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	/**
-	 * @param parentNode
-	 *            [hasNode(parentNode)]
-	 * @param node
-	 *            [!hasNode(node)]
-	 */
-	public void addChild(TreeNode parentNode, TreeNode node) {
-		checkArg(hasNode(parentNode), "parentNode is not in the tree");
-		checkArg(!hasNode(node), "node is already in the tree");
+    /**
+     * @param node &nbsp;
+     * @return true iff the node is in the tree
+     */
+    public boolean hasNode(TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-		List<TreeNode> list = childrenMap.get(parentNode);
-		if (list == null) {
-			list = new ArrayList<TreeNode>();
-			childrenMap.put(parentNode, list);
-		}
-		list.add(node);
-		parents.put(node, parentNode);
-	}
+    /**
+     * @param parentNode
+     *            [hasNode(parentNode)]
+     * @param node
+     *            [!hasNode(node)]
+     */
+    public void addChild(TreeNode parentNode, TreeNode node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	public void addChildren(TreeNode parentNode, TreeNode... nodes) {
-		for (TreeNode node : nodes) {
-			addChild(parentNode, node);
-		}
-	}
-
+    public void addChildren(TreeNode parentNode, TreeNode... nodes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

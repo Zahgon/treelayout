@@ -36,19 +36,18 @@ import org.abego.treelayout.NodeExtentProvider;
  * <p>
  * As one would expect this NodeExtentProvider returns the width and height as
  * specified with each TextInBox.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
  */
-public class TextInBoxNodeExtentProvider implements
-		NodeExtentProvider<TextInBox> {
+public class TextInBoxNodeExtentProvider implements NodeExtentProvider<TextInBox> {
 
-	@Override
-	public double getWidth(TextInBox treeNode) {
-		return treeNode.width;
-	}
+    @Override
+    public double getWidth(TextInBox treeNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	@Override
-	public double getHeight(TextInBox treeNode) {
-		return treeNode.height;
-	}
+    @Override
+    public double getHeight(TextInBox treeNode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

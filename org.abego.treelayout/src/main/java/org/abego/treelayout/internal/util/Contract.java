@@ -29,26 +29,18 @@
  */
 package org.abego.treelayout.internal.util;
 
-
 /**
  * A set of methods to support some sort of "Design by Contract" programming.
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
- * 
- * 
  */
 public class Contract {
 
-	public static void checkArg(boolean isOK, String s) {
-		if (!isOK) {
-			throw new IllegalArgumentException(s);
-		}
-	}
+    public static void checkArg(boolean isOK, String s) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-	public static void checkState(boolean isOK, String s) {
-		if (!isOK) {
-			throw new IllegalStateException(s);
-		}
-	}
-
+    public static void checkState(boolean isOK, String s) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -46,38 +46,18 @@ import org.abego.treelayout.util.DefaultConfiguration;
  * <p>
  * Link: <a href="doc-files/svgdemo.svg">The SVG file (only viewable in SVG aware
  * browsers)</a>
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
  */
 public class SVGDemo {
 
-	/**
-	 * Returns an SVG text displaying a tree with nodes placed according to a
-	 * layout created by {@link TreeLayout}.
-	 * 
-	 * @param args [unused]
-	 */
-	public static void main(String[] args) {
-		// get the sample tree
-		TreeForTreeLayout<TextInBox> tree = SampleTreeFactory
-				.createSampleTree();
-
-		// setup the tree layout configuration
-		double gapBetweenLevels = 50;
-		double gapBetweenNodes = 10;
-		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(
-				gapBetweenLevels, gapBetweenNodes);
-
-		// create the NodeExtentProvider for TextInBox nodes
-		TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
-
-		// create the layout
-		TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree,
-				nodeExtentProvider, configuration);
-
-		// Generate the SVG and write it to System.out
-		SVGForTextInBoxTree generator = new SVGForTextInBoxTree(treeLayout);
-		System.out.println(generator.getSVG());
-	}
-
+    /**
+     * Returns an SVG text displaying a tree with nodes placed according to a
+     * layout created by {@link TreeLayout}.
+     *
+     * @param args [unused]
+     */
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

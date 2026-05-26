@@ -30,11 +30,9 @@
 package org.abego.treelayout.demo.swing;
 
 import java.awt.Container;
-
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-
 import org.abego.treelayout.TreeForTreeLayout;
 import org.abego.treelayout.TreeLayout;
 import org.abego.treelayout.demo.SampleTreeFactory;
@@ -53,73 +51,44 @@ import org.abego.treelayout.util.DefaultConfiguration;
  * Screenshot:
  * <p>
  * <img src="doc-files/swingdemo.png" alt="A tree rendered using Swing">
- * 
+ *
  * @author Udo Borkowski (ub@abego.org)
  */
 public class SwingDemo {
 
-	private static void showInDialog(JComponent panel) {
-		JDialog dialog = new JDialog();
-		Container contentPane = dialog.getContentPane();
-		((JComponent) contentPane).setBorder(BorderFactory.createEmptyBorder(
-				10, 10, 10, 10));
-		contentPane.add(panel);
-		dialog.pack();
-		dialog.setLocationRelativeTo(null);
-		dialog.setVisible(true);
-	}
+    private static void showInDialog(JComponent panel) {
+        JDialog dialog = new JDialog();
+        Container contentPane = dialog.getContentPane();
+        ((JComponent) contentPane).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        contentPane.add(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }
 
-	private static TreeForTreeLayout<TextInBox> getSampleTree(String treeName) {
-		TreeForTreeLayout<TextInBox> tree;
-		if (treeName.equals("semtab")) {
-			tree = SampleTreeFactory.createSemanticTableaux();
-		} else if (treeName.equals("semtab2")) {
-			tree = SampleTreeFactory.createSemanticTableaux2();
-		} else if (treeName.equals("2")) {
-			tree = SampleTreeFactory.createSampleTree2();
-		} else if (treeName.equals("")) {
-			tree = SampleTreeFactory.createSampleTree();
-		} else {
-			throw new RuntimeException(String.format("Invalid tree name: '%s'",
-					treeName));
-		}
-		return tree;
-	}
+    private static TreeForTreeLayout<TextInBox> getSampleTree(String treeName) {
+        TreeForTreeLayout<TextInBox> tree;
+        if (treeName.equals("semtab")) {
+            tree = SampleTreeFactory.createSemanticTableaux();
+        } else if (treeName.equals("semtab2")) {
+            tree = SampleTreeFactory.createSemanticTableaux2();
+        } else if (treeName.equals("2")) {
+            tree = SampleTreeFactory.createSampleTree2();
+        } else if (treeName.equals("")) {
+            tree = SampleTreeFactory.createSampleTree();
+        } else {
+            throw new RuntimeException(String.format("Invalid tree name: '%s'", treeName));
+        }
+        return tree;
+    }
 
-	/**
-	 * Shows a dialog with a tree in a layout created by {@link TreeLayout},
-	 * using the Swing component {@link TextInBoxTreePane}.
-	 * 
-	 * @param args args[0]: treeName (default="")
-	 */
-	public static void main(String[] args) {
-		// get the sample tree
-		String treeName = (args.length > 0) ? args[0] : "";
-		boolean boxVisible = true;
-
-		for (String s: args) {
-			if (s.equalsIgnoreCase("--nobox")) {
-				boxVisible = false;
-			}
-		}
-		TreeForTreeLayout<TextInBox> tree = getSampleTree(treeName);
-				
-		// setup the tree layout configuration
-		double gapBetweenLevels = treeName.startsWith("semtab") ? 15 : 50;
-		double gapBetweenNodes = 10;
-		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(
-				gapBetweenLevels, gapBetweenNodes);
-
-		// create the NodeExtentProvider for TextInBox nodes
-		TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
-
-		// create the layout
-		TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree,
-				nodeExtentProvider, configuration);
-
-		// Create a panel that draws the nodes and edges and show the panel
-		TextInBoxTreePane panel = new TextInBoxTreePane(treeLayout);
-		panel.setBoxVisible(boxVisible);
-		showInDialog(panel);
-	}
+    /**
+     * Shows a dialog with a tree in a layout created by {@link TreeLayout},
+     * using the Swing component {@link TextInBoxTreePane}.
+     *
+     * @param args args[0]: treeName (default="")
+     */
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
